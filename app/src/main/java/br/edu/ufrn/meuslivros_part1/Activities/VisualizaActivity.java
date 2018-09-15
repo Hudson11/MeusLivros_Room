@@ -3,7 +3,6 @@ package br.edu.ufrn.meuslivros_part1.Activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,11 +20,10 @@ public class VisualizaActivity extends AppCompatActivity {
     TextView titulo_livro;
     TextView ano_livro;
     TextView nota_livro;
-    Button proximo;
-    Button anterior;
     BancoHelper db;
     List<Livro> livros = new ArrayList<>();
     Livro v = new Livro();
+    private int index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,51 +37,37 @@ public class VisualizaActivity extends AppCompatActivity {
 
         db = new BancoHelper(this);
 
-        proximo = findViewById(R.id.proximo);
-        anterior = findViewById(R.id.anterior);
-
         livros = db.findAll();
-        final int index = livros.size();
+        index = livros.size();
         v = livros.get(0);
 
-        autor_livro.setText(v.getAutor().toString());
-        titulo_livro.setText(v.getTitulo().toString());
-        ano_livro.setText(String.valueOf(v.getAno()).toString());
-        nota_livro.setText(String.valueOf(v.getNota()).toString());
+        setTextView(v);
 
-        proximo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    }
 
-                cont++;
+    public void proximo_rg(View view){
+        cont++;
 
-                if(cont == index) {
-                    cont = index - 1;
-                    return;
-                }
+        if(cont == index) {
+            cont = index - 1;
+            return;
+        }
 
-                v = livros.get(cont);
+        v = livros.get(cont);
 
-                setTextView(v);
+        setTextView(v);
+    }
 
-            }
-        });
+    public void anterior_rg(View view){
+        cont--;
 
-        anterior.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        if(cont == -1){
+            cont = 0;
+            return;
+        }
 
-                cont--;
-
-                if(cont == -1){
-                    cont = 0;
-                    return;
-                }
-
-                v = livros.get(cont);
-                setTextView(v);
-            }
-        });
+        v = livros.get(cont);
+        setTextView(v);
     }
 
 
@@ -93,4 +77,5 @@ public class VisualizaActivity extends AppCompatActivity {
         ano_livro.setText(String.valueOf(v.getAno()).toString());
         nota_livro.setText(String.valueOf(v.getNota()).toString());
     }
+
 }

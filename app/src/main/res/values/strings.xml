@@ -10,5 +10,6 @@
     <string name="cancelar" translatable="false">Cancelar</string>
     <string name="proximo" translatable="false">Proximo</string>
     <string name="anterior" translatable="false">Anterior</string>
-    <string name="nota">Nota</string>
+    <string name="nota" translatable="false">Nota</string>
+    <string name="cadastrou" translatable="false">Cadastrou</string>
 </resources>

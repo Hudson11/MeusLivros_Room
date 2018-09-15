@@ -118,10 +118,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="26dp"
         android:text="@string/salvar"
+        android:onClick="save"
         app:layout_constraintBottom_toTopOf="@+id/cancelar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints,OnClick" />
 
     <Button
         android:id="@+id/cancelar"
@@ -129,9 +130,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="69dp"
         android:text="@string/cancelar"
-        android:onClick="click"
+        android:onClick="cancell"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints,OnClick" />
 </android.support.constraint.ConstraintLayout>
