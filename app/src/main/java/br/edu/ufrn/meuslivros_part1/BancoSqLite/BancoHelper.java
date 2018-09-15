@@ -24,7 +24,7 @@ public class BancoHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_TABLE =
             ("CREATE TABLE " + LivroContrato.LivroEntry.TABLE_NAME +
                     "("+
-                    LivroContrato.LivroEntry.ID + "INTEGER PRIMARY KEY"+ VIRGULA+
+                    LivroContrato.LivroEntry._ID + "INTEGER PRIMARY KEY"+ VIRGULA+
                     LivroContrato.LivroEntry.TITULO + TEXT_TYPE + VIRGULA+
                     LivroContrato.LivroEntry.AUTOR + TEXT_TYPE + VIRGULA+
                     LivroContrato.LivroEntry.ANO + NUMBER_TYPE+
@@ -72,7 +72,7 @@ public class BancoHelper extends SQLiteOpenHelper {
 
             if(id != 0){
 
-                String selection = LivroContrato.LivroEntry.ID + "=?";
+                String selection = LivroContrato.LivroEntry._ID + "=?";
                 String[] where_args = new String[]{String.valueOf(id)};
 
                 int count = db.update(LivroContrato.LivroEntry.TABLE_NAME, values, selection, where_args);
@@ -96,8 +96,7 @@ public class BancoHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         try{
 
-            Cursor c = db.query(LivroContrato.LivroEntry.TABLE_NAME, null, null,
-                    null, null, null, null);
+            Cursor c = db.query(LivroContrato.LivroEntry.TABLE_NAME, null, null,null, null, null, null, null);
             Log.i("LISTOU", "Lista Livros");
             return toList(c);
 
@@ -107,7 +106,7 @@ public class BancoHelper extends SQLiteOpenHelper {
     }
 
     //Recebe um Cursor e cria a lista de dados
-    public List<Livro> toList(Cursor c){
+    private List<Livro> toList(Cursor c){
 
         List<Livro> livros = new ArrayList<>();
 
@@ -117,11 +116,11 @@ public class BancoHelper extends SQLiteOpenHelper {
                 Livro livro = new Livro();
                 livros.add(livro);
 
-                livro.setId(c.getInt(c.getColumnIndex(LivroContrato.LivroEntry.ID)));
-                livro.setAutor(c.getString(c.getColumnIndex(LivroContrato.LivroEntry.ID)));
-                livro.setTitulo(c.getString(c.getColumnIndex(LivroContrato.LivroEntry.ID)));
-                livro.setNota(c.getDouble(c.getColumnIndex(LivroContrato.LivroEntry.ID)));
-                livro.setAno(c.getInt(c.getColumnIndex(LivroContrato.LivroEntry.ID)));
+                livro.setId(c.getInt(c.getColumnIndex(LivroContrato.LivroEntry._ID)));
+                livro.setAutor(c.getString(c.getColumnIndex(LivroContrato.LivroEntry.AUTOR)));
+                livro.setTitulo(c.getString(c.getColumnIndex(LivroContrato.LivroEntry.TITULO)));
+                livro.setNota(c.getDouble(c.getColumnIndex(LivroContrato.LivroEntry.NOTA)));
+                livro.setAno(c.getInt(c.getColumnIndex(LivroContrato.LivroEntry.ANO)));
 
             } while(c.moveToNext());
         }

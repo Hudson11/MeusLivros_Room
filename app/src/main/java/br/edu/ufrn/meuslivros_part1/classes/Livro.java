@@ -2,11 +2,11 @@ package br.edu.ufrn.meuslivros_part1.classes;
 
 public class Livro {
 
-    String titulo;
-    String autor;
-    int ano;
-    double nota;
-    int id;
+    private String titulo;
+    private String autor;
+    private int ano;
+    private double nota;
+    private int id;
 
     public Livro(String titulo, String autor, int ano, double nota){
         this.titulo = titulo;

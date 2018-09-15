@@ -15,16 +15,22 @@ import br.edu.ufrn.meuslivros_part1.classes.Livro;
 
 public class CadastraActivity extends AppCompatActivity {
 
+    BancoHelper bh;
+    EditText autor;
+    EditText titulo;
+    EditText ano;
+    RatingBar bar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastra);
 
-        final BancoHelper bh = new BancoHelper(this);
-        final EditText autor = findViewById(R.id.autor);
-        final EditText titulo = findViewById(R.id.titulo);
-        final EditText ano = findViewById(R.id.ano);
-        final RatingBar bar = findViewById(R.id.ratingBar);
+        bh = new BancoHelper(this);
+        autor = findViewById(R.id.autor);
+        titulo = findViewById(R.id.titulo);
+        ano = findViewById(R.id.ano);
+        bar = findViewById(R.id.ratingBar);
 
         Button cadastrar = findViewById(R.id.salvar);
         cadastrar.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +43,8 @@ public class CadastraActivity extends AppCompatActivity {
 
                 Livro v = new Livro(autor.getText().toString(), titulo.getText().toString(), x, y);
                 bh.save(v);
+
+                finish();
             }
         });
 

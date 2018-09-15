@@ -43,10 +43,19 @@
             tools:layout_editor_absoluteX="91dp"
             tools:layout_editor_absoluteY="136dp" />
 
+        <TextView
+            android:id="@+id/nota_livro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nota"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="91dp"
+            tools:layout_editor_absoluteY="136dp" />
+
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/proximo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -57,7 +66,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/anterior"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

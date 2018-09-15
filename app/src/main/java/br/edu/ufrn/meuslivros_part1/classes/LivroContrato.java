@@ -12,6 +12,5 @@ public class LivroContrato {
         public static String AUTOR = "autor";
         public static String ANO = "ano";
         public static String NOTA = "nota";
-        public static String ID = "id";
     }
 }
