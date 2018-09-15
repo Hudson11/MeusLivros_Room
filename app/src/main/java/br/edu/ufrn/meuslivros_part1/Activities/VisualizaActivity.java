@@ -8,22 +8,26 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.ufrn.meuslivros_part1.BancoSqLite.BancoHelper;
+import br.edu.ufrn.meuslivros_part1.BancoRoom.AppDatabase;
+import br.edu.ufrn.meuslivros_part1.Interfaces.LivroDao;
 import br.edu.ufrn.meuslivros_part1.R;
 import br.edu.ufrn.meuslivros_part1.classes.Livro;
 
 public class VisualizaActivity extends AppCompatActivity {
 
     private int cont = 0;
+    private int index;
 
     TextView autor_livro;
     TextView titulo_livro;
     TextView ano_livro;
     TextView nota_livro;
-    BancoHelper db;
+
     List<Livro> livros = new ArrayList<>();
     Livro v = new Livro();
-    private int index;
+
+    AppDatabase db;
+    LivroDao livroDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +39,10 @@ public class VisualizaActivity extends AppCompatActivity {
         ano_livro = findViewById(R.id.ano_livro);
         nota_livro = findViewById(R.id.nota_livro);
 
-        db = new BancoHelper(this);
+        db = AppDatabase.getDatabase(this);
+        livroDao = db.livroDao();
 
-        livros = db.findAll();
+        livros = livroDao.listAll();
         index = livros.size();
         v = livros.get(0);
 

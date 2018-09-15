@@ -9,18 +9,31 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="368dp"
+        android:layout_width="215dp"
         android:layout_height="118dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="200dp"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="26dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/titulo_livro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/titulo"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="91dp"
+            tools:layout_editor_absoluteY="136dp" />
 
         <TextView
             android:id="@+id/autor_livro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/titulo"
+            android:text="@string/autor"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="55dp"
             tools:layout_editor_absoluteY="97dp" />
@@ -29,19 +42,10 @@
             android:id="@+id/ano_livro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/autor"
+            android:text="@string/ano"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="173dp"
             tools:layout_editor_absoluteY="45dp" />
-
-        <TextView
-            android:id="@+id/titulo_livro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/ano"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="91dp"
-            tools:layout_editor_absoluteY="136dp" />
 
         <TextView
             android:id="@+id/nota_livro"
@@ -58,10 +62,10 @@
         android:id="@+id/proximo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="294dp"
-        android:text="@string/proximo"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="144dp"
         android:onClick="proximo_rg"
+        android:text="@string/proximo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:ignore="MissingConstraints,OnClick" />
@@ -70,10 +74,10 @@
         android:id="@+id/anterior"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="294dp"
-        android:text="@string/anterior"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="144dp"
         android:onClick="anterior_rg"
+        android:text="@string/anterior"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:ignore="MissingConstraints,OnClick" />

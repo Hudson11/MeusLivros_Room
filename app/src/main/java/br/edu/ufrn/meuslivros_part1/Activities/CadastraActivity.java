@@ -5,23 +5,23 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import br.edu.ufrn.meuslivros_part1.BancoSqLite.BancoHelper;
+import br.edu.ufrn.meuslivros_part1.BancoRoom.AppDatabase;
+import br.edu.ufrn.meuslivros_part1.Interfaces.LivroDao;
 import br.edu.ufrn.meuslivros_part1.R;
 import br.edu.ufrn.meuslivros_part1.classes.Livro;
 
 public class CadastraActivity extends AppCompatActivity {
 
-    BancoHelper bh;
     EditText autor;
     EditText titulo;
     EditText ano;
     RatingBar bar;
+
+    AppDatabase db;
+    LivroDao livroDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +33,17 @@ public class CadastraActivity extends AppCompatActivity {
         ano = findViewById(R.id.ano);
         bar = findViewById(R.id.ratingBar);
 
+        db = AppDatabase.getDatabase(this);
+        livroDao = db.livroDao();
+
     }
 
     public void save(View v){
         int x = Integer.parseInt(ano.getText().toString());
         float y = bar.getRating();
 
-        bh = new BancoHelper(this);
-
         Livro livro = new Livro(autor.getText().toString(), titulo.getText().toString(), x, y);
-        bh.save(livro);
+        livroDao.inserir(livro);
         Log.i("SALVOU", "Dado: " + y);
 
         finish();

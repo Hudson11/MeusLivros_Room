@@ -1,11 +1,18 @@
 package br.edu.ufrn.meuslivros_part1.classes;
 
+
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity(tableName = "tabela_livro")
 public class Livro {
 
     private String titulo;
     private String autor;
     private int ano;
     private double nota;
+
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     public Livro(String titulo, String autor, int ano, double nota){
