@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +21,10 @@ public class VisualizaActivity extends AppCompatActivity {
     TextView titulo_livro;
     TextView ano_livro;
     TextView nota_livro;
+    Button proximo;
+    Button anterior;
     BancoHelper db;
-    List<Livro> livros;
+    List<Livro> livros = new ArrayList<>();
     Livro v = new Livro();
 
     @Override
@@ -39,16 +39,17 @@ public class VisualizaActivity extends AppCompatActivity {
 
         db = new BancoHelper(this);
 
-        Button proximo = findViewById(R.id.proximo);
-        Button anterior = findViewById(R.id.anterior);
+        proximo = findViewById(R.id.proximo);
+        anterior = findViewById(R.id.anterior);
 
         livros = db.findAll();
+        final int index = livros.size();
         v = livros.get(0);
 
-        autor_livro.setText(v.getAutor());
-        titulo_livro.setText(v.getTitulo());
-        ano_livro.setText(v.getAno());
-        nota_livro.setText((int) v.getNota());
+        autor_livro.setText(v.getAutor().toString());
+        titulo_livro.setText(v.getTitulo().toString());
+        ano_livro.setText(String.valueOf(v.getAno()).toString());
+        nota_livro.setText(String.valueOf(v.getNota()).toString());
 
         proximo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,15 +57,14 @@ public class VisualizaActivity extends AppCompatActivity {
 
                 cont++;
 
-                if(livros.get(cont) == null)
+                if(cont == index) {
+                    cont = index - 1;
                     return;
+                }
 
                 v = livros.get(cont);
 
-                autor_livro.setText(v.getAutor());
-                titulo_livro.setText(v.getTitulo());
-                ano_livro.setText(v.getAno());
-                nota_livro.setText((int) v.getNota());
+                setTextView(v);
 
             }
         });
@@ -72,20 +72,25 @@ public class VisualizaActivity extends AppCompatActivity {
         anterior.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cont++;
 
-                if(livros.get(cont) == null || cont == 0)
+                cont--;
+
+                if(cont == -1){
+                    cont = 0;
                     return;
+                }
 
                 v = livros.get(cont);
-
-                autor_livro.setText(v.getAutor());
-                titulo_livro.setText(v.getTitulo());
-                ano_livro.setText(v.getAno());
-                nota_livro.setText((int) v.getNota());
-
+                setTextView(v);
             }
         });
+    }
 
+
+    public void setTextView(Livro v){
+        autor_livro.setText(v.getAutor().toString());
+        titulo_livro.setText(v.getTitulo().toString());
+        ano_livro.setText(String.valueOf(v.getAno()).toString());
+        nota_livro.setText(String.valueOf(v.getNota()).toString());
     }
 }

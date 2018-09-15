@@ -18,26 +18,28 @@ public class BancoHelper extends SQLiteOpenHelper {
     private static final String TAG = "sql";
     private static final String TEXT_TYPE = " TEXT";
     private static final String NUMBER_TYPE = " INTEGER";
+    private static final String DOUBLE_TYPE = " REAL";
     private static final String VIRGULA = ",";
 
     //Instrução Mysql para criação da tabela livro
     private static final String SQL_CREATE_TABLE =
             ("CREATE TABLE " + LivroContrato.LivroEntry.TABLE_NAME +
                     "("+
-                    LivroContrato.LivroEntry._ID + "INTEGER PRIMARY KEY"+ VIRGULA+
+                    LivroContrato.LivroEntry._ID + " INTEGER PRIMARY KEY"+ VIRGULA+
                     LivroContrato.LivroEntry.TITULO + TEXT_TYPE + VIRGULA+
                     LivroContrato.LivroEntry.AUTOR + TEXT_TYPE + VIRGULA+
-                    LivroContrato.LivroEntry.ANO + NUMBER_TYPE+
+                    LivroContrato.LivroEntry.ANO + NUMBER_TYPE+ VIRGULA+
+                    LivroContrato.LivroEntry.NOTA + DOUBLE_TYPE+
             ");");
 
     //instrução Mysql para deletar a tabela do banco
     private static final String SQL_DROP_TABLE = (
-            "DROP TABLE " + LivroContrato.LivroEntry.TABLE_NAME + VIRGULA
+            "DROP TABLE " + LivroContrato.LivroEntry.TABLE_NAME
             );
 
     //Nome do Banco e Versão do Banco
     private static final String DATABASE_NAME = "MEUS_LIVROS";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 4;
 
     //constructor
     public BancoHelper(Context context){
@@ -69,6 +71,7 @@ public class BancoHelper extends SQLiteOpenHelper {
             values.put(LivroContrato.LivroEntry.AUTOR, livro.getAutor());
             values.put(LivroContrato.LivroEntry.TITULO, livro.getTitulo());
             values.put(LivroContrato.LivroEntry.ANO, livro.getAno());
+            values.put(LivroContrato.LivroEntry.NOTA, livro.getNota());
 
             if(id != 0){
 
@@ -96,7 +99,7 @@ public class BancoHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         try{
 
-            Cursor c = db.query(LivroContrato.LivroEntry.TABLE_NAME, null, null,null, null, null, null, null);
+            Cursor c = db.query(LivroContrato.LivroEntry.TABLE_NAME, null, null, null, null, null, null, null);
             Log.i("LISTOU", "Lista Livros");
             return toList(c);
 
@@ -126,6 +129,16 @@ public class BancoHelper extends SQLiteOpenHelper {
         }
 
         return livros;
+    }
+
+    //Executa o  mysql
+    public void execSQL(String sql) {
+        SQLiteDatabase db = getWritableDatabase();
+        try {
+            db.execSQL(sql);
+        } finally {
+            db.close();
+        }
     }
 
 }
