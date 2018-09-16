@@ -46,16 +46,12 @@ public class CadastraActivity extends AppCompatActivity {
         livroDao.inserir(livro);
         Log.i("SALVOU", "Dado: " + y);
 
+        setResult(RESULT_OK);
         finish();
-
-        Snackbar snackbar = Snackbar.make((View) v.getParent(), "Livro Cadastrado com Sucesso", Snackbar.LENGTH_SHORT);
-        snackbar.show();
     }
 
     public void cancell(View v){
+        setResult(RESULT_CANCELED);
         finish();
-
-        Snackbar snackbar = Snackbar.make((View) v.getParent(), "Cancelou", Snackbar.LENGTH_SHORT);
-        snackbar.show();
     }
 }
