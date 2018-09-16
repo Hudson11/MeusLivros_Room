@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
         String label;
 
         if(resultcode == RESULT_OK)
-            label = "Livro Cadastrado Com Sucesso";
+            label = "Livro Cadastrado Com Sucesso!!";
         else
-            label = "Operação Cancelada";
+            label = "Operação Cancelada!!";
 
         View v = findViewById(R.id.constraintLayout);
 
