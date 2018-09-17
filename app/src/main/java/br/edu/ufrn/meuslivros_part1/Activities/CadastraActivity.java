@@ -1,5 +1,6 @@
 package br.edu.ufrn.meuslivros_part1.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,9 +21,6 @@ public class CadastraActivity extends AppCompatActivity {
     EditText ano;
     RatingBar bar;
 
-    AppDatabase db;
-    LivroDao livroDao;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,21 +30,19 @@ public class CadastraActivity extends AppCompatActivity {
         titulo = findViewById(R.id.titulo);
         ano = findViewById(R.id.ano);
         bar = findViewById(R.id.ratingBar);
-
-        db = AppDatabase.getDatabase(this);
-        livroDao = db.livroDao();
-
     }
 
     public void save(View v){
         int x = Integer.parseInt(ano.getText().toString());
         float y = bar.getRating();
 
-        Livro livro = new Livro(autor.getText().toString(), titulo.getText().toString(), x, y);
-        livroDao.inserir(livro);
-        Log.i("SALVOU", "Dado: " + y);
+        Intent t = new Intent();
+        t.putExtra("autor", autor.getText().toString());
+        t.putExtra("titulo", titulo.getText().toString());
+        t.putExtra("ano", x);
+        t.putExtra("nota", y);
 
-        setResult(RESULT_OK);
+        setResult(RESULT_OK, t);
         finish();
     }
 
