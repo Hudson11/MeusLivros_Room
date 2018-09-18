@@ -22,6 +22,10 @@
 
         <activity android:name=".Activities.VisualizaActivity">
         </activity>
+
+        <activity android:name=".Activities.BuscarActivity">
+        </activity>
+
     </application>
 
 </manifest>

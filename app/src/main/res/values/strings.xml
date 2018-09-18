@@ -12,4 +12,5 @@
     <string name="anterior" translatable="false">Anterior</string>
     <string name="nota" translatable="false">Nota</string>
     <string name="cadastrou" translatable="false">Cadastrou</string>
+    <string name="buscar">Buscar</string>
 </resources>

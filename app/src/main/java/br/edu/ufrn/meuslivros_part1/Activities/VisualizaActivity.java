@@ -23,8 +23,8 @@ public class VisualizaActivity extends AppCompatActivity {
     TextView ano_livro;
     TextView nota_livro;
 
-    List<Livro> livros = new ArrayList<>();
-    Livro v = new Livro();
+    private List<Livro> livros = new ArrayList<>();
+    private Livro v = new Livro();
 
     AppDatabase db;
     LivroDao livroDao;

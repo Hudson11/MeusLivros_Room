@@ -15,7 +15,7 @@ public class Livro {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    public Livro(String titulo, String autor, int ano, double nota){
+    public Livro(String autor, String titulo, int ano, double nota){
         this.titulo = titulo;
         this.autor = autor;
         this.ano = ano;

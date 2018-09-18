@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     AppDatabase db;
     LivroDao livroDao;
-    boolean tf = false;
-    int duraction = 2000;
+    private boolean tf = false;
+    private static final int duraction = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void click2(View v){
         Intent t = new Intent(this, VisualizaActivity.class);
+        startActivity(t);
+    }
+
+    public  void click3(View v){
+        Intent t = new Intent(this, BuscarActivity.class);
         startActivity(t);
     }
 
