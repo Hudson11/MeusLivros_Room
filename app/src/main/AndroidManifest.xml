@@ -26,6 +26,9 @@
         <activity android:name=".Activities.BuscarActivity">
         </activity>
 
+        <activity android:name=".Activities.ListarActivity">
+        </activity>
+
     </application>
 
 </manifest>

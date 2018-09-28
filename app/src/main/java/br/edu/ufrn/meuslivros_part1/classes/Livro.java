@@ -11,15 +11,17 @@ public class Livro {
     private String autor;
     private int ano;
     private double nota;
+    private int img;
 
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    public Livro(String autor, String titulo, int ano, double nota){
+    public Livro(String autor, String titulo, int ano, double nota, int img){
         this.titulo = titulo;
         this.autor = autor;
         this.ano = ano;
         this.nota = nota;
+        this.img = img;
     }
 
     public Livro(){}
@@ -62,5 +64,13 @@ public class Livro {
 
     public void setNota(double nota) {
         this.nota = nota;
+    }
+
+    public int getImg() {
+        return img;
+    }
+
+    public void setImg(int img) {
+        this.img = img;
     }
 }

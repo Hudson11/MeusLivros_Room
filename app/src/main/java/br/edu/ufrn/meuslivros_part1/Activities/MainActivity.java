@@ -35,17 +35,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void click2(View v){
+        if(livroDao.listAll().isEmpty()) {
+            Log.i("lista", "lista vazia");
+            return;
+        }
+
         Intent t = new Intent(this, VisualizaActivity.class);
         startActivity(t);
     }
 
-    public  void click3(View v){
+    public void click3(View v){
         Intent t = new Intent(this, BuscarActivity.class);
+        startActivity(t);
+    }
+
+    public void click4(View v){
+        Intent t = new Intent(this, ListarActivity.class);
         startActivity(t);
     }
 
     @Override
     protected void onActivityResult(int requestcode, int resultcode, Intent t){
+
+        if(t == null)
+            return;
 
         String label;
         final Bundle b = t.getExtras();
@@ -76,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if(tf == false) {
-                    Livro livro = new Livro(b.getString("autor"), b.getString("titulo"), b.getInt("ano"), b.getDouble("nota"));
+                    Livro livro = new Livro(b.getString("autor"), b.getString("titulo"), b.getInt("ano"), b.getDouble("nota"), R.drawable.livro_icon_png_3);
                     livroDao.inserir(livro);
                     Log.i("cadastrou", "Cadastrou");
                 }else{
