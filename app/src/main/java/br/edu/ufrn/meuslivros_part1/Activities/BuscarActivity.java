@@ -3,6 +3,8 @@ package br.edu.ufrn.meuslivros_part1.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -57,6 +59,21 @@ public class BuscarActivity extends AppCompatActivity {
         complete = findViewById(R.id.autoCompleteTextView);
         complete.setAdapter(adaptador);
 
+        //avaliableString(complete.getText().toString(), livros);
     }
 
+    public void click5(View v) {
+        //public void avaliableString (String value, List < Livro > lista){
+            for (int i = 0; i > livros.size(); i++) {
+                if (complete.getText().toString().equals(livros.get(i).getTitulo()) == true) {
+                    titulo_busca.setText(livros.get(i).getTitulo());
+                    autor_busca.setText(livros.get(i).getAutor());
+                    nota_busca.setText((int) livros.get(i).getNota());
+                    ano_busca.setText(livros.get(i).getAno());
+                    return;
+                }
+            }
+            Log.i("Falha", "falhou " + complete.getText().toString());
+       // }
+    }
 }
