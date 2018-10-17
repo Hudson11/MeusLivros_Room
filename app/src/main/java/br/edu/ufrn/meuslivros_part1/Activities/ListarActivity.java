@@ -6,6 +6,9 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +16,7 @@ import br.edu.ufrn.meuslivros_part1.Adapters.LivroAdapter;
 import br.edu.ufrn.meuslivros_part1.BancoRoom.AppDatabase;
 import br.edu.ufrn.meuslivros_part1.Interfaces.LivroDao;
 import br.edu.ufrn.meuslivros_part1.R;
+import br.edu.ufrn.meuslivros_part1.RecyclerViewTouchListener.RecyclerViewTouchListener;
 import br.edu.ufrn.meuslivros_part1.classes.Livro;
 
 public class ListarActivity extends AppCompatActivity {
@@ -39,8 +43,24 @@ public class ListarActivity extends AppCompatActivity {
 
         //declarando um layout ao adapter
         RecyclerView.LayoutManager layout = new GridLayoutManager(this,  2);
-
+        // set layout no recyclerView
         recyclerView.setLayoutManager(layout);
+
+        //criando o uso dos gestos do recycler view
+        recyclerView.addOnItemTouchListener(
+                new RecyclerViewTouchListener(this, recyclerView, new RecyclerViewTouchListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Toast.makeText(ListarActivity.this, "Clique curto", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onItemLongClick(View view, int position) {
+                        Toast.makeText(ListarActivity.this, "Clique longo", Toast.LENGTH_LONG).show();
+                    }
+                })
+        );
+
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
     }
